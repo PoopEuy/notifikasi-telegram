@@ -26,6 +26,7 @@ console.log("token_bot : " + token_bot);
 //env use
 
 const PORT = process.env.PORT;
+const APP_HOST = process.env.APP_HOST
 
 console.log("PORT : " + PORT);
 // Use Router
@@ -87,7 +88,7 @@ async function getRealtime() {
   try {
     let total_down = 0;
 
-    const res = await axios.get(`http://localhost:3001/getRealtime`);
+    const res = await axios.get(`${APP_HOST}:${PORT}/getRealtime`);
     const arr = await res.data;
 
     const batt_volt = await res.data[0].batt_volt;
@@ -123,7 +124,7 @@ async function getSiteDown() {
   console.log("masuk fungsi");
 
   try {
-    const res = await axios.get(`http://localhost:3001/getSiteDown`);
+    const res = await axios.get(`${APP_HOST}:${PORT}/getSiteDown`);
     const arr = await res.data;
 
     const total_down = arr.length;
